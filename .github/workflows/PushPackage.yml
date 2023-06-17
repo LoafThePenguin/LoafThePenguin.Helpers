@@ -49,7 +49,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Pack Package
-        run: dotnet pack src/LoafThePenguin.Helpers -c Release
+        run: dotnet pack src/LoafThePenguin.Helpers/LoafThePenguin.Helpers.csproj -c Release
       - name: Push Package
         run: dotnet nuget push "**/LoafThePenguin.Helpers/artifacts/Release/nupkg/*.nupkg" --api-key ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/LoafThePenguin/index.json
 
