@@ -1,0 +1,57 @@
+<Project ToolsVersion="latest" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SolutionDir Condition="'$(SolutionDir)' == ''">$(MSBuildThisFileDirectory.TrimEnd('\').TrimEnd('/'))\</SolutionDir>
+    <NoLogo>true</NoLogo>
+    <Authors>dtoriki</Authors>
+    
+    <SuppressNETCoreSdkPreviewMessage>false</SuppressNETCoreSdkPreviewMessage>
+    <EnablePreviewFeatures>true</EnablePreviewFeatures>
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>embedded</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <Features>strict;pdb-path-determinism</Features>
+    <NoPackageAnalysis>false</NoPackageAnalysis>
+
+    <DefaultLanguage>ru-RU</DefaultLanguage>
+    <SatelliteResourceLanguages>ru</SatelliteResourceLanguages>
+    
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <OutputPath>$(SolutionDir)artifacts\$(Configuration)\bin</OutputPath>
+    <BaseIntermediateOutputPath>$(SolutionDir)artifacts\$(Configuration)\obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
+    <PackageOutputPath>$(SolutionDir)artifacts\$(Configuration)\nupkg</PackageOutputPath>
+
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+
+    <PublishReadyToRun>true</PublishReadyToRun>
+    <PublishSingleFile>true</PublishSingleFile>
+    
+    <NoWarn>CS0067</NoWarn>
+    <GenerateFullPaths Condition="'$(TERM_PROGRAM)' == 'vscode'">true</GenerateFullPaths>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(IDEA_INITIAL_DIRECTORY)' == ''">
+    <Deterministic>true</Deterministic>
+    <DeterministicSourcePaths>true</DeterministicSourcePaths>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    <PathMap>'$(SolutionDir)'=/_/</PathMap>
+  </PropertyGroup>
+  <ItemGroup Condition="$(DeterministicSourcePaths) == 'true'">
+    <SourceRoot Include="$(MSBuildThisFileDirectory)/"/>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.5.119">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="SauceControl.InheritDoc" Version="1.3.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+</Project>
