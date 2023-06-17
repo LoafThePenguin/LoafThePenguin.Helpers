@@ -1,0 +1,9 @@
+name: Test
+on:
+  workflow_dispatch:
+   
+jobs:
+  Test:
+    uses: LoafThePenguin/actions/.github/workflows/CheckAndPushPackage.yml@main
+    with: 
+      PROJECT: LoafThePenguin.Helpers

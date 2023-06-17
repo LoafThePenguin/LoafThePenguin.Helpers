@@ -1,0 +1,18 @@
+# https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+updates:
+  - package-ecosystem: "nuget"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    rebase-strategy: "disabled"
+    target-branch: "dev"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "dtoriki"
+    labels:
+      - "Зависимости"
+    commit-message:
+      prefix: ""
+      include: "scope"
