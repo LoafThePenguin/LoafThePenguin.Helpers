@@ -1,6 +1,6 @@
 name: PushPackage
 on:
-  workflow_call:
+  workflow_dispatch:
 jobs:
   sonar:
     name: Build and analyze
