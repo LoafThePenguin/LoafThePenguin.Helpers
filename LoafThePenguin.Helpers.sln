@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{48C24E3D-444C-463C-9A58-BBBE36628354}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution items", "{1AE519E4-BFD0-4F33-81EC-6DDE4F31AAE2}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+		LICENSE = LICENSE
+		version.json = version.json
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoafThePenguin.Helpers", "src\LoafThePenguin.Helpers\LoafThePenguin.Helpers.csproj", "{5C11D257-7376-4957-87F1-18AE47EBB6B5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{5E369AF1-BC20-4107-95D5-D5B2875D6751}"
+	ProjectSection(SolutionItems) = preProject
+		.github\dependabot.yml = .github\dependabot.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{6DE7ACE1-00C7-4367-822F-4EAC08F2C87C}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\ReleasePackage.yml = .github\workflows\ReleasePackage.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5C11D257-7376-4957-87F1-18AE47EBB6B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C11D257-7376-4957-87F1-18AE47EBB6B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C11D257-7376-4957-87F1-18AE47EBB6B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C11D257-7376-4957-87F1-18AE47EBB6B5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5C11D257-7376-4957-87F1-18AE47EBB6B5} = {48C24E3D-444C-463C-9A58-BBBE36628354}
+		{6DE7ACE1-00C7-4367-822F-4EAC08F2C87C} = {5E369AF1-BC20-4107-95D5-D5B2875D6751}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9F2B7F69-3C5E-4A4C-8499-1FB9081618B7}
+	EndGlobalSection
+EndGlobal
