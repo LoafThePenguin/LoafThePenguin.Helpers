@@ -7,3 +7,5 @@ jobs:
     uses: LoafThePenguin/actions/.github/workflows/CheckAndPushPackage.yml@main
     with: 
       PROJECT: LoafThePenguin.Helpers
+      SONAR_KEY: ${{ secrets.SONAR_KEY }}
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
