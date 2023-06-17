@@ -23,7 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{5E36
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{6DE7ACE1-00C7-4367-822F-4EAC08F2C87C}"
 	ProjectSection(SolutionItems) = preProject
-		.github\workflows\ReleasePackage.yml = .github\workflows\ReleasePackage.yml
+		.github\workflows\SonarCloud.yml = .github\workflows\SonarCloud.yml
 	EndProjectSection
 EndProject
 Global
