@@ -47,6 +47,8 @@ jobs:
     name: Push LoafThePenguin.Helpers Package
     needs: [sonar]
     runs-on: windows-latest
+    permissions: 
+        packages: write
     steps:
       - name: Setup .NET 7
         uses: actions/setup-dotnet@v2
@@ -58,13 +60,17 @@ jobs:
       - name: Pack Package
         run: dotnet pack "src/LoafThePenguin.Helpers/LoafThePenguin.Helpers.csproj" -c Release
       - name: Push Package
-        run: dotnet nuget push "**/artifacts/Release/nupkg/*.nupkg" --api-key "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" -s "LoafThePenguin" --skip-duplicate --no-symbols
+        run: dotnet nuget push "**/artifacts/Release/nupkg/*.nupkg" --api-key ${{ secrets.GITHUB_TOKEN }} -s "LoafThePenguin" --skip-duplicate --no-symbols
    
   tag: 
     name: Create Tag
     needs: [release]
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps: 
+      - run: echo "previous_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo '')" >> $GITHUB_ENV
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       - name: Version
         uses: dotnet/nbgv@master
         id: nbgv
@@ -72,7 +78,6 @@ jobs:
           setAllVars: true
           setCommonVars: true
       - run: "echo 'SemVer2: ${{ steps.nbgv.outputs.SemVer2 }}'"
-      - run: echo "previous_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo '')" >> $GITHUB_ENV
       - name: Create Tag
         id: create_tag
         uses: jaywcjlove/create-tag-action@main
