@@ -3,8 +3,22 @@ on:
   push:
     branches:
       - release
+    paths-ignore:
+      - 'docs/**'
+      - '.github/**'
+      - '*.md'
+      - '.gitignore'
+      - 'version.json'
+      - 'LICENSE'
   pull_request:
     types: [opened, synchronize, reopened]
+    paths-ignore:
+      - 'docs/**'
+      - '.github/**'
+      - '*.md'
+      - '.gitignore'
+      - 'version.json'
+      - 'LICENSE'
 jobs:
   sonar:
     name: Build and analyze
