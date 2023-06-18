@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution 
 		.gitignore = .gitignore
 		Directory.Build.props = Directory.Build.props
 		LICENSE = LICENSE
+		nuget.config = nuget.config
 		version.json = version.json
 	EndProjectSection
 EndProject
@@ -29,7 +30,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{70510BC3-E7B4-43F9-AF02-590C099826B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoafThePenguin.Helpers.Tests", "tests\LoafThePenguin.Helpers.Tests\LoafThePenguin.Helpers.Tests.csproj", "{9C2A785E-C562-4B15-A084-B51CE263CE05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoafThePenguin.Helpers.Tests", "tests\LoafThePenguin.Helpers.Tests\LoafThePenguin.Helpers.Tests.csproj", "{9C2A785E-C562-4B15-A084-B51CE263CE05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
