@@ -19,7 +19,8 @@
     ":!/.gitignore",
     ":!/.editorconfig",
     ":!/.github/",
-    ":!/tests/"
+    ":!/tests/",
+    ":!/nuget.config"
   ],
   "gitCommitIdShortFixedLength": 3,
   "semVer1NumericIdentifierPadding": 3
