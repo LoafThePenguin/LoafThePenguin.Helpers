@@ -18,7 +18,8 @@
     ":!/Directory.Build.props",
     ":!/.gitignore",
     ":!/.editorconfig",
-    ":!/.github/"
+    ":!/.github/",
+    ":!/tests/"
   ],
   "gitCommitIdShortFixedLength": 3,
   "semVer1NumericIdentifierPadding": 3
