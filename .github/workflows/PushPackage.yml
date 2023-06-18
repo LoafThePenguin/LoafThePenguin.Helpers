@@ -81,4 +81,6 @@ jobs:
       - name: Create Tag
         id: create_tag
         if: (env.previous_tag || env.previous_tag=='')
-        run: git tag ${{ steps.nbgv.outputs.SemVer2 }}
+        run: | 
+            git tag ${{ steps.nbgv.outputs.SemVer2 }}
+            git push origin --tags
