@@ -6,169 +6,85 @@ public sealed class DateOnlyHelperTests
     [Fact(Timeout = 3)]
     public void Is_PrevDayOfWeekDate_Monday_Correct()
     {
-        DateOnly todayDateExample = new(year: 2023, month: 6, day: 18);
-        DayOfWeek prevDayOfWeek = DayOfWeek.Monday;
-
-        DateOnly nextDayOfWeekDate = DateOnlyHelper.PrevDayOfWeekDate(prevDayOfWeek);
-        DateOnly expectedDate = todayDateExample.AddDays(value: -6);
-
-        Assert.Equal(expectedDate, nextDayOfWeekDate);
+        IsPrevDayOfWeekDateCorrect(DayOfWeek.Monday);
     }
 
     [Fact(Timeout = 3)]
     public void Is_PrevDayOfWeekDate_Tuesday_Correct()
     {
-        DateOnly todayDateExample = new(year: 2023, month: 6, day: 18);
-        DayOfWeek prevDayOfWeek = DayOfWeek.Tuesday;
-
-        DateOnly nextDayOfWeekDate = DateOnlyHelper.PrevDayOfWeekDate(prevDayOfWeek);
-        DateOnly expectedDate = todayDateExample.AddDays(value: -5);
-
-        Assert.Equal(expectedDate, nextDayOfWeekDate);
+        IsPrevDayOfWeekDateCorrect(DayOfWeek.Tuesday);
     }
 
     [Fact(Timeout = 3)]
     public void Is_PrevDayOfWeekDate_Wednesday_Correct()
     {
-        DateOnly todayDateExample = new(year: 2023, month: 6, day: 18);
-        DayOfWeek prevDayOfWeek = DayOfWeek.Wednesday;
-
-        DateOnly nextDayOfWeekDate = DateOnlyHelper.PrevDayOfWeekDate(prevDayOfWeek);
-        DateOnly expectedDate = todayDateExample.AddDays(value: -4);
-
-        Assert.Equal(expectedDate, nextDayOfWeekDate);
+        IsPrevDayOfWeekDateCorrect(DayOfWeek.Wednesday);
     }
 
     [Fact(Timeout = 3)]
     public void Is_PrevDayOfWeekDate_Thursday_Correct()
     {
-        DateOnly todayDateExample = new(year: 2023, month: 6, day: 18);
-        DayOfWeek prevDayOfWeek = DayOfWeek.Thursday;
-
-        DateOnly nextDayOfWeekDate = DateOnlyHelper.PrevDayOfWeekDate(prevDayOfWeek);
-        DateOnly expectedDate = todayDateExample.AddDays(value: -3);
-
-        Assert.Equal(expectedDate, nextDayOfWeekDate);
+        IsPrevDayOfWeekDateCorrect(DayOfWeek.Thursday);
     }
 
     [Fact(Timeout = 3)]
     public void Is_PrevDayOfWeekDate_Friday_Correct()
     {
-        DateOnly todayDateExample = new(year: 2023, month: 6, day: 18);
-        DayOfWeek prevDayOfWeek = DayOfWeek.Friday;
-
-        DateOnly nextDayOfWeekDate = DateOnlyHelper.PrevDayOfWeekDate(prevDayOfWeek);
-        DateOnly expectedDate = todayDateExample.AddDays(value: -2);
-
-        Assert.Equal(expectedDate, nextDayOfWeekDate);
+        IsPrevDayOfWeekDateCorrect(DayOfWeek.Friday);
     }
 
     [Fact(Timeout = 3)]
     public void Is_PrevDayOfWeekDate_Saturday_Correct()
     {
-        DateOnly todayDateExample = new(year: 2023, month: 6, day: 18);
-        DayOfWeek prevDayOfWeek = DayOfWeek.Saturday;
-
-        DateOnly nextDayOfWeekDate = DateOnlyHelper.PrevDayOfWeekDate(prevDayOfWeek);
-        DateOnly expectedDate = todayDateExample.AddDays(value: -1);
-
-        Assert.Equal(expectedDate, nextDayOfWeekDate);
+        IsPrevDayOfWeekDateCorrect(DayOfWeek.Saturday);
     }
 
     [Fact(Timeout = 3)]
     public void Is_PrevDayOfWeekDate_Sunday_Correct()
     {
-        DateOnly todayDateExample = new(year: 2023, month: 6, day: 18);
-        DayOfWeek prevDayOfWeek = DayOfWeek.Sunday;
-
-        DateOnly nextDayOfWeekDate = DateOnlyHelper.PrevDayOfWeekDate(prevDayOfWeek);
-        DateOnly expectedDate = todayDateExample.AddDays(value: -7);
-
-        Assert.Equal(expectedDate, nextDayOfWeekDate);
+        IsPrevDayOfWeekDateCorrect(DayOfWeek.Saturday);
     }
 
     [Fact(Timeout = 3)]
     public void Is_NextDayOfWeekDate_Monday_Correct()
     {
-        DateOnly todayDateExample = new(year: 2023, month: 6, day: 18);
-        DayOfWeek nextDayOfWeek = DayOfWeek.Monday;
-
-        DateOnly nextDayOfWeekDate = DateOnlyHelper.NextDayOfWeekDate(nextDayOfWeek);
-        DateOnly expectedDate = todayDateExample.AddDays(value: 1);
-
-        Assert.Equal(expectedDate, nextDayOfWeekDate);
+        IsNextDayOfWeekDateCorrect(DayOfWeek.Monday);
     }
 
     [Fact(Timeout = 3)]
     public void Is_NextDayOfWeekDate_Tuesday_Correct()
     {
-        DateOnly todayDateExample = new(year: 2023, month: 6, day: 18);
-        DayOfWeek nextDayOfWeek = DayOfWeek.Tuesday;
-
-        DateOnly nextDayOfWeekDate = DateOnlyHelper.NextDayOfWeekDate(nextDayOfWeek);
-        DateOnly expectedDate = todayDateExample.AddDays(value: 2);
-
-        Assert.Equal(expectedDate, nextDayOfWeekDate);
+        IsNextDayOfWeekDateCorrect(DayOfWeek.Tuesday);
     }
 
     [Fact(Timeout = 3)]
     public void Is_NextDayOfWeekDate_Wednesday_Correct()
     {
-        DateOnly todayDateExample = new(year: 2023, month: 6, day: 18);
-        DayOfWeek nextDayOfWeek = DayOfWeek.Wednesday;
-
-        DateOnly nextDayOfWeekDate = DateOnlyHelper.NextDayOfWeekDate(nextDayOfWeek);
-        DateOnly expectedDate = todayDateExample.AddDays(value: 3);
-
-        Assert.Equal(expectedDate, nextDayOfWeekDate);
+        IsNextDayOfWeekDateCorrect(DayOfWeek.Wednesday);
     }
 
     [Fact(Timeout = 3)]
     public void Is_NextDayOfWeekDate_Thursday_Correct()
     {
-        DateOnly todayDateExample = new(year: 2023, month: 6, day: 18);
-        DayOfWeek nextDayOfWeek = DayOfWeek.Thursday;
-
-        DateOnly nextDayOfWeekDate = DateOnlyHelper.NextDayOfWeekDate(nextDayOfWeek);
-        DateOnly expectedDate = todayDateExample.AddDays(value: 4);
-
-        Assert.Equal(expectedDate, nextDayOfWeekDate);
+        IsNextDayOfWeekDateCorrect(DayOfWeek.Thursday);
     }
 
     [Fact(Timeout = 3)]
     public void Is_NextDayOfWeekDate_Friday_Correct()
     {
-        DateOnly todayDateExample = new(year: 2023, month: 6, day: 18);
-        DayOfWeek nextDayOfWeek = DayOfWeek.Friday;
-
-        DateOnly nextDayOfWeekDate = DateOnlyHelper.NextDayOfWeekDate(nextDayOfWeek);
-        DateOnly expectedDate = todayDateExample.AddDays(value: 5);
-
-        Assert.Equal(expectedDate, nextDayOfWeekDate);
+        IsNextDayOfWeekDateCorrect(DayOfWeek.Friday);
     }
 
     [Fact(Timeout = 3)]
     public void Is_NextDayOfWeekDate_Saturday_Correct()
     {
-        DateOnly todayDateExample = new(year: 2023, month: 6, day: 18);
-        DayOfWeek nextDayOfWeek = DayOfWeek.Saturday;
-
-        DateOnly nextDayOfWeekDate = DateOnlyHelper.NextDayOfWeekDate(nextDayOfWeek);
-        DateOnly expectedDate = todayDateExample.AddDays(value: 6);
-
-        Assert.Equal(expectedDate, nextDayOfWeekDate);
+        IsNextDayOfWeekDateCorrect(DayOfWeek.Saturday);
     }
 
     [Fact(Timeout = 3)]
     public void Is_NextDayOfWeekDate_Sunday_Correct()
     {
-        DateOnly todayDateExample = new(year: 2023, month: 6, day: 18);
-        DayOfWeek nextDayOfWeek = DayOfWeek.Sunday;
-
-        DateOnly nextDayOfWeekDate = DateOnlyHelper.NextDayOfWeekDate(nextDayOfWeek);
-        DateOnly expectedDate = todayDateExample.AddDays(value: 7);
-
-        Assert.Equal(expectedDate, nextDayOfWeekDate);
+        IsNextDayOfWeekDateCorrect(DayOfWeek.Sunday);
     }
 
     [Fact(Timeout = 3)]
@@ -217,6 +133,37 @@ public sealed class DateOnlyHelperTests
         DateOnly dateNow = DateOnlyHelper.DateToday;
 
         Assert.Equal(expected, dateNow.Year);
+    }
+
+    private static void IsPrevDayOfWeekDateCorrect(DayOfWeek prevDayOfWeek)
+    {
+        DateOnly actual = DateOnlyHelper.PrevDayOfWeekDate(prevDayOfWeek);
+        DateOnly expectedDate = DayOfWeekDate(prevDayOfWeek, nextDayOfweek: false);
+
+        Assert.Equal(expectedDate, actual);
+    }
+
+    private static void IsNextDayOfWeekDateCorrect(DayOfWeek nextDayOfWeek)
+    {
+        DateOnly actual = DateOnlyHelper.NextDayOfWeekDate(nextDayOfWeek);
+        DateOnly expectedDate = DayOfWeekDate(nextDayOfWeek, nextDayOfweek: true);
+
+        Assert.Equal(expectedDate, actual);
+    }
+
+    private static DateOnly DayOfWeekDate(DayOfWeek dayOfWeek, bool nextDayOfweek)
+    {
+        int direction = nextDayOfweek
+            ? 1
+            : -1;
+
+        var result = DateOnly.FromDateTime(DateTime.Now.AddDays(direction));
+        while (result.DayOfWeek != dayOfWeek)
+        {
+            result = result.AddDays(direction);
+        }
+
+        return result;
     }
 }
 #pragma warning restore CS1591 // Отсутствует комментарий XML для открытого видимого типа или члена
