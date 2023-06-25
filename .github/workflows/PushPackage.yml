@@ -1,16 +1,6 @@
 name: PushPackage
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - release
-    paths-ignore:
-      - 'docs/**'
-      - '.github/**'
-      - '*.md'
-      - '.gitignore'
-      - 'version.json'
-      - 'LICENSE'
 jobs:
   sonar:
     name: Build and analyze
@@ -43,8 +33,6 @@ jobs:
         run: |
           New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
-      - name: Setup Coverage Tool
-        run: dotnet tool install --global dotnet-coverage
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
@@ -52,8 +40,7 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"LoafThePenguin_LoafThePenguin.Helpers" /o:"loafthepenguin" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-          dotnet build LoafThePenguin.Helpers.sln --no-incremental
-          dotnet test --collect "Code Coverage"
+          dotnet build src/LoafThePenguin.Helpers/LoafThePenguin.Helpers.csproj
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
           
   release:
