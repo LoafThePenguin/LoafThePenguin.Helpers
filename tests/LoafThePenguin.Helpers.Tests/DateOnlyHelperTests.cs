@@ -4,6 +4,18 @@ namespace LoafThePenguin.Helpers.Tests;
 public sealed class DateOnlyHelperTests
 {
     [Fact(Timeout = 3)]
+    public void Is_PrevDayOfWeekDateFrom_Monday_Correct()
+    {
+        IsPrevDayOfWeekFromDateCorrect(new DateOnly(2023, 6, 26), DayOfWeek.Sunday);
+    }
+
+    [Fact(Timeout = 3)]
+    public void Is_NextDayOfWeekDateFrom_Monday_Correct()
+    {
+        IsNextDayOfWeekFromDateCorrect(new DateOnly(2023, 6, 21), DayOfWeek.Friday);
+    }
+
+    [Fact(Timeout = 3)]
     public void Is_PrevDayOfWeekDate_Monday_Correct()
     {
         IsPrevDayOfWeekDateCorrect(DayOfWeek.Monday);
@@ -135,29 +147,47 @@ public sealed class DateOnlyHelperTests
         Assert.Equal(expected, dateNow.Year);
     }
 
+    private static void IsPrevDayOfWeekFromDateCorrect(DateOnly fromDate, DayOfWeek prevDayOfWeek)
+    {
+        DateOnly actual = DateOnlyHelper.PrevDayOfWeekDateFrom(fromDate, prevDayOfWeek);
+        DateOnly expectedDate = DayOfWeekDate(fromDate, prevDayOfWeek, nextDayOfweek: false);
+
+        Assert.Equal(expectedDate, actual);
+    }
+
+    private static void IsNextDayOfWeekFromDateCorrect(DateOnly fromDate, DayOfWeek prevDayOfWeek)
+    {
+        DateOnly actual = DateOnlyHelper.NextDayOfWeekDateFrom(fromDate, prevDayOfWeek);
+        DateOnly expectedDate = DayOfWeekDate(fromDate, prevDayOfWeek, nextDayOfweek: true);
+
+        Assert.Equal(expectedDate, actual);
+    }
+
     private static void IsPrevDayOfWeekDateCorrect(DayOfWeek prevDayOfWeek)
     {
+        var dateNow = DateOnly.FromDateTime(DateTime.Now);
         DateOnly actual = DateOnlyHelper.PrevDayOfWeekDate(prevDayOfWeek);
-        DateOnly expectedDate = DayOfWeekDate(prevDayOfWeek, nextDayOfweek: false);
+        DateOnly expectedDate = DayOfWeekDate(dateNow, prevDayOfWeek, nextDayOfweek: false);
 
         Assert.Equal(expectedDate, actual);
     }
 
     private static void IsNextDayOfWeekDateCorrect(DayOfWeek nextDayOfWeek)
     {
+        var dateNow = DateOnly.FromDateTime(DateTime.Now);
         DateOnly actual = DateOnlyHelper.NextDayOfWeekDate(nextDayOfWeek);
-        DateOnly expectedDate = DayOfWeekDate(nextDayOfWeek, nextDayOfweek: true);
+        DateOnly expectedDate = DayOfWeekDate(dateNow, nextDayOfWeek, nextDayOfweek: true);
 
         Assert.Equal(expectedDate, actual);
     }
 
-    private static DateOnly DayOfWeekDate(DayOfWeek dayOfWeek, bool nextDayOfweek)
+    private static DateOnly DayOfWeekDate(DateOnly fromDate, DayOfWeek dayOfWeek, bool nextDayOfweek)
     {
         int direction = nextDayOfweek
             ? 1
             : -1;
 
-        var result = DateOnly.FromDateTime(DateTime.Now.AddDays(direction));
+        DateOnly result = fromDate.AddDays(direction);
         while (result.DayOfWeek != dayOfWeek)
         {
             result = result.AddDays(direction);
