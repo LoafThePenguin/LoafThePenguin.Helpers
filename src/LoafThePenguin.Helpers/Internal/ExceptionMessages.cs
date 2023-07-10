@@ -8,6 +8,5 @@ internal static class ExceptionMessages
     public const string OBSCURE_EXCEPTION_THROWN = "Было вызвано неизвестное исключение.";
     public const string NEED_AT_LEAST_A_MESSAGE = "Необходимо, хотябы, сообщение об ошибке.";
     public const string SEQUENCE_HAS_NULL_REFERENCE = "Последовательность \"{0}\" содержит пустые ссылки.";
-    public const string OBJECT_DISPOSED = "Объект \"{0}\" типа \"{1}\" был освобождён.";
     public const string NULL_REFERENCE = "Объект \"{0}\" типа \"{1}\" оказался null.";
 }
