@@ -1,4 +1,6 @@
-﻿namespace LoafThePenguin.Helpers.Tests;
+using System.IO;
+
+namespace LoafThePenguin.Helpers.Tests;
 #pragma warning disable CS1591 // Отсутствует комментарий XML для открытого видимого типа или члена
 
 public sealed class TimeOnlyHelperTests
