@@ -12,6 +12,62 @@ namespace LoafThePenguin.Helpers;
 public static class EnumHelper
 {
     /// <summary>
+    /// Возвращает именованную константу <typeparamref name="TEnum"/>,
+    /// по её отображаемому описанию <see cref="DisplayAttribute.Description"/>.
+    /// </summary>
+    /// <param name="displayDescription">
+    /// Отображаемое описание именованной константы <see cref="DisplayAttribute.Description"/>.
+    /// </param>
+    /// <typeparam name="TEnum">
+    /// Тип именованной константы.
+    /// </typeparam>
+    /// <returns>Именованная константа.</returns>
+    /// <exception cref="InvalidOperationException">
+    /// Возникает когда в типе именованных констант, 
+    /// есть больше чем одна именованная константа 
+    /// с одним отображаемым описанием <see cref="DisplayAttribute.Description"/>.
+    /// </exception>
+    /// <exception cref="ArgumentNullException">
+    /// Возникает когда <paramref name="displayDescription"/>
+    /// оказываются <see langword="null"/>.
+    /// </exception>
+    public static TEnum? GetEnumValueByDisplayDescription<TEnum>(string displayDescription)
+        where TEnum : struct, Enum
+    {
+        _ = ThrowIfArgumentNull(displayDescription);
+
+        return (TEnum?)GetEnumValueByDisplayDescription(typeof(TEnum), displayDescription);
+    }
+
+    /// <summary>
+    /// Возвращает именованную константу <see cref="Enum"/>,
+    /// по её отображаемому имени <see cref="DisplayAttribute.Name"/>.
+    /// </summary>
+    /// <param name="displayName">
+    /// Отображаемое имя именованной константы <see cref="DisplayAttribute.Name"/>.
+    /// </param>
+    /// <typeparam name="TEnum">
+    /// Тип именованной константы.
+    /// </typeparam>
+    /// <returns>Именованная константа.</returns>
+    /// <exception cref="InvalidOperationException">
+    /// Возникает когда в типе именованных констант, 
+    /// есть больше чем одна именованная константа 
+    /// с одним отображаемым именем <see cref="DisplayAttribute.Name"/>.
+    /// </exception>
+    /// <exception cref="ArgumentNullException">
+    /// Возникает когда <paramref name="displayName"/>
+    /// оказываются <see langword="null"/>.
+    /// </exception>
+    public static TEnum? GetEnumValueByDisplayName<TEnum>(string displayName)
+        where TEnum : struct, Enum
+    {
+        _ = ThrowIfArgumentNull(displayName);
+
+        return (TEnum?)GetEnumValueByDisplayDescription(typeof(TEnum), displayName);
+    }
+
+    /// <summary>
     /// Возвращает именованную константу <see cref="Enum"/>,
     /// по её отображаемому описанию <see cref="DisplayAttribute.Description"/>.
     /// </summary>

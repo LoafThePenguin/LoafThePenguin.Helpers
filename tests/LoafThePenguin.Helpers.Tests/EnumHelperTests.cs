@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace LoafThePenguin.Helpers.Tests;
 
@@ -73,5 +73,51 @@ public sealed class EnumHelperTests
     public void GetEnumValueByDisplayName_Throws_ANE_DisplayName_Is_Null()
     {
         Assert.Throws<ArgumentNullException>(() => EnumHelper.GetEnumValueByDisplayName(typeof(FooType), null));
+    }
+
+    [Fact(Timeout = TIMEOUT)]
+    public void Generic_GetEnumValueByDisplayDescription_Gets_Value()
+    {
+        FooType expected = FooType.One;
+        FooType? actual = EnumHelper.GetEnumValueByDisplayDescription<FooType>(DISPLAY_DESCRIPTION_ONE);
+
+        Assert.Equal(expected, actual);
+    }
+
+    [Fact(Timeout = TIMEOUT)]
+    public void Generic_GetEnumValueByDisplayDescription_Gets_Null()
+    {
+        FooType? actual = EnumHelper.GetEnumValueByDisplayDescription<FooType>(DISPLAY_DESCRIPTION);
+
+        Assert.Null(actual);
+    }
+
+    [Fact(Timeout = TIMEOUT)]
+    public void Generic_GetEnumValueByDisplayDescription_Throws_ANE_DisplayDescription_Is_Null()
+    {
+        Assert.Throws<ArgumentNullException>(() => EnumHelper.GetEnumValueByDisplayDescription<FooType>(null));
+    }
+
+    [Fact(Timeout = TIMEOUT)]
+    public void Generic_GetEnumValueByDisplayName_Gets_Value()
+    {
+        FooType expected = FooType.One;
+        FooType? actual = EnumHelper.GetEnumValueByDisplayName<FooType>(DISPLAY_NAME_ONE);
+
+        Assert.Equal(expected, actual);
+    }
+
+    [Fact(Timeout = TIMEOUT)]
+    public void Generic_GetEnumValueByDisplayName_Gets_Null()
+    {
+        FooType? actual = EnumHelper.GetEnumValueByDisplayName<FooType>(DISPLAY_NAME);
+
+        Assert.Null(actual);
+    }
+
+    [Fact(Timeout = TIMEOUT)]
+    public void Generic_GetEnumValueByDisplayName_Throws_ANE_DisplayDescription_Is_Null()
+    {
+        Assert.Throws<ArgumentNullException>(() => EnumHelper.GetEnumValueByDisplayName<FooType>(null));
     }
 }
