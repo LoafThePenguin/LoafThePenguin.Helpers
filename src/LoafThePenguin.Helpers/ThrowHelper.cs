@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using System.Linq;
 using static LoafThePenguin.Helpers.Internal.ExceptionMessages;
 
 namespace LoafThePenguin.Helpers;
@@ -168,8 +169,8 @@ public static class ThrowHelper
         if (permissibleMaximum < permissibleMinimum)
         {
             Throw<InvalidOperationException>(string.Format(
-                ARGUMENT_OUT_OF_RANGE_CANT_BE_LOWER, 
-                nameof(permissibleMaximum), 
+                ARGUMENT_OUT_OF_RANGE_CANT_BE_LOWER,
+                nameof(permissibleMaximum),
                 nameof(permissibleMinimum)));
         }
 
@@ -262,12 +263,9 @@ public static class ThrowHelper
         [CallerArgumentExpression(SEQUENCE_ARGUMENT_NAME)] string? argumentName = null)
     {
         ThrowIfArgumentNull(sequence);
-        foreach (object enumeable in sequence)
+        if (sequence.Cast<object>().Any(o => o is null))
         {
-            if (enumeable is null)
-            {
-                Throw<NullReferenceException>(string.Format(SEQUENCE_HAS_NULL_REFERENCE, argumentName));
-            }
+            Throw<NullReferenceException>(string.Format(SEQUENCE_HAS_NULL_REFERENCE, argumentName));
         }
 
         return false;

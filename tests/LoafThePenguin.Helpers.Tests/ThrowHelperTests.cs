@@ -1,3 +1,5 @@
+using System.Collections;
+
 namespace LoafThePenguin.Helpers.Tests;
 
 public sealed class ThrowHelperTests
@@ -184,10 +186,32 @@ public sealed class ThrowHelperTests
         Assert.Throws<ArgumentNullException>(() => ThrowHelper.ThrowIfAnyItemIsNull(null));
     }
 
-    [Fact(Timeout = TIMEOUT)]
-    public void ThrowIfAnyItemIsNull_Throws_NRE()
+    [Theory(Timeout = TIMEOUT)]
+    [MemberData(nameof(ThrowIfAnyItemIsNullThrowsNREData))]
+    public void ThrowIfAnyItemIsNull_Throws_NRE<T>(IEnumerable enumerable)
     {
-        Assert.Throws<NullReferenceException>(() => ThrowHelper.ThrowIfAnyItemIsNull(new[] { "sadfasdf", null, ""}));
+        Assert.Throws<NullReferenceException>(() => ThrowHelper.ThrowIfAnyItemIsNull(enumerable));
+    }
+
+    [Theory(Timeout = TIMEOUT)]
+    [MemberData(nameof(ThrowIfAnyItemIsNullDontThrowNREData))]
+    public void ThrowIfAnyItemIsNull_Dont_Throw_NRE<T>(IEnumerable enumerable)
+    {
+        Assert.False(ThrowHelper.ThrowIfAnyItemIsNull(enumerable));
+    }
+
+    public static IEnumerable<object[]> ThrowIfAnyItemIsNullThrowsNREData()
+    {
+        yield return new object[] { new[] { "sadfasdf", null, string.Empty } };
+        yield return new object[] { new int?[] { 1, null, 3 } };
+    }
+    public static IEnumerable<object[]> ThrowIfAnyItemIsNullDontThrowNREData()
+    {
+        yield return new object[] { Array.Empty<string>() };
+        yield return new object[] { Array.Empty<int>() };
+        yield return new object[] { Array.Empty<int?>() };
+        yield return new object[] { new[] { 1, 2, 3 } };
+        yield return new object[] { new[] { string.Empty, "abc", "def" } };
     }
 
 }
