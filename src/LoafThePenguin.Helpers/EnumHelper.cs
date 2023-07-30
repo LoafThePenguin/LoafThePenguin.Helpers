@@ -41,34 +41,6 @@ public static class EnumHelper
 
     /// <summary>
     /// Возвращает именованную константу <see cref="Enum"/>,
-    /// по её отображаемому имени <see cref="DisplayAttribute.Name"/>.
-    /// </summary>
-    /// <param name="displayName">
-    /// Отображаемое имя именованной константы <see cref="DisplayAttribute.Name"/>.
-    /// </param>
-    /// <typeparam name="TEnum">
-    /// Тип именованной константы.
-    /// </typeparam>
-    /// <returns>Именованная константа.</returns>
-    /// <exception cref="InvalidOperationException">
-    /// Возникает когда в типе именованных констант, 
-    /// есть больше чем одна именованная константа 
-    /// с одним отображаемым именем <see cref="DisplayAttribute.Name"/>.
-    /// </exception>
-    /// <exception cref="ArgumentNullException">
-    /// Возникает когда <paramref name="displayName"/>
-    /// оказываются <see langword="null"/>.
-    /// </exception>
-    public static TEnum? GetEnumValueByDisplayName<TEnum>(string displayName)
-        where TEnum : struct, Enum
-    {
-        _ = ThrowIfArgumentNull(displayName);
-
-        return (TEnum?)GetEnumValueByDisplayName(typeof(TEnum), displayName);
-    }
-
-    /// <summary>
-    /// Возвращает именованную константу <see cref="Enum"/>,
     /// по её отображаемому описанию <see cref="DisplayAttribute.Description"/>.
     /// </summary>
     /// <param name="targetType">Тип именованной константы.</param>
@@ -94,6 +66,34 @@ public static class EnumHelper
             targetType,
             displayDescription,
             d => d?.Description);
+    }
+
+    /// <summary>
+    /// Возвращает именованную константу <see cref="Enum"/>,
+    /// по её отображаемому имени <see cref="DisplayAttribute.Name"/>.
+    /// </summary>
+    /// <param name="displayName">
+    /// Отображаемое имя именованной константы <see cref="DisplayAttribute.Name"/>.
+    /// </param>
+    /// <typeparam name="TEnum">
+    /// Тип именованной константы.
+    /// </typeparam>
+    /// <returns>Именованная константа.</returns>
+    /// <exception cref="InvalidOperationException">
+    /// Возникает когда в типе именованных констант, 
+    /// есть больше чем одна именованная константа 
+    /// с одним отображаемым именем <see cref="DisplayAttribute.Name"/>.
+    /// </exception>
+    /// <exception cref="ArgumentNullException">
+    /// Возникает когда <paramref name="displayName"/>
+    /// оказываются <see langword="null"/>.
+    /// </exception>
+    public static TEnum? GetEnumValueByDisplayName<TEnum>(string displayName)
+        where TEnum : struct, Enum
+    {
+        _ = ThrowIfArgumentNull(displayName);
+
+        return (TEnum?)GetEnumValueByDisplayName(typeof(TEnum), displayName);
     }
 
     /// <summary>
