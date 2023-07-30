@@ -1,5 +1,4 @@
-﻿namespace LoafThePenguin.Helpers.Tests;
-#pragma warning disable CS1591 // Отсутствует комментарий XML для открытого видимого типа или члена
+namespace LoafThePenguin.Helpers.Tests;
 
 public sealed class ThrowHelperTests
 {
@@ -36,7 +35,7 @@ public sealed class ThrowHelperTests
     [Fact(Timeout = TIMEOUT)]
     public void Throw_Throws_ANE()
     {
-        Assert.Throws<ArgumentNullException>(() => ThrowHelper.Throw<ExcetptionWithCtor>(null!));
+        Assert.Throws<ArgumentNullException>(() => ThrowHelper.Throw<ExcetptionWithCtor>(null));
     }
 
     [Fact(Timeout = TIMEOUT)]
@@ -73,7 +72,7 @@ public sealed class ThrowHelperTests
     [Fact(Timeout = TIMEOUT)]
     public void ThrowDisposed_Throws_ANE()
     {
-        Assert.Throws<ArgumentNullException>(() => ThrowHelper.ThrowDisposed<Stream>(null!));
+        Assert.Throws<ArgumentNullException>(() => ThrowHelper.ThrowDisposed<Stream>(null));
     }
 
     [Fact(Timeout = TIMEOUT)]
@@ -151,7 +150,7 @@ public sealed class ThrowHelperTests
     [Fact(Timeout = TIMEOUT)]
     public void DoIfNull_Throws_ANE_If_Action_Null()
     {
-        Assert.Throws<ArgumentNullException>(() => ThrowHelper.DoIfNull<FooClass>(null, null!));
+        Assert.Throws<ArgumentNullException>(() => ThrowHelper.DoIfNull<FooClass>(null, null));
     }
 
     [Fact(Timeout = TIMEOUT)]
@@ -182,7 +181,7 @@ public sealed class ThrowHelperTests
     [Fact(Timeout = TIMEOUT)]
     public void ThrowIfAnyItemIsNull_Throws_ANE()
     {
-        Assert.Throws<ArgumentNullException>(() => ThrowHelper.ThrowIfAnyItemIsNull(null!));
+        Assert.Throws<ArgumentNullException>(() => ThrowHelper.ThrowIfAnyItemIsNull(null));
     }
 
     [Fact(Timeout = TIMEOUT)]
@@ -192,4 +191,3 @@ public sealed class ThrowHelperTests
     }
 
 }
-#pragma warning restore CS1591 // Отсутствует комментарий XML для открытого видимого типа или члена

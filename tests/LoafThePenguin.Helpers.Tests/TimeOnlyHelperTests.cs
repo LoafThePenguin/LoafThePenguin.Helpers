@@ -1,7 +1,6 @@
 using System.IO;
 
 namespace LoafThePenguin.Helpers.Tests;
-#pragma warning disable CS1591 // Отсутствует комментарий XML для открытого видимого типа или члена
 
 public sealed class TimeOnlyHelperTests
 {
@@ -20,4 +19,3 @@ public sealed class TimeOnlyHelperTests
         Assert.True(difference < epsilon);
     }
 }
-#pragma warning restore CS1591 // Отсутствует комментарий XML для открытого видимого типа или члена
