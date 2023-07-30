@@ -93,6 +93,8 @@ jobs:
       - run: "echo 'New tag: ${{ steps.nbgv.outputs.SemVer2 }}'"
       - name: Create Tag
         id: create_tag
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: (env.previous_tag || env.previous_tag=='')
         run: | 
             git tag ${{ steps.nbgv.outputs.SemVer2 }}
