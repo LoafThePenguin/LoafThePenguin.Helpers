@@ -64,7 +64,7 @@ public static class EnumHelper
     {
         _ = ThrowIfArgumentNull(displayName);
 
-        return (TEnum?)GetEnumValueByDisplayDescription(typeof(TEnum), displayName);
+        return (TEnum?)GetEnumValueByDisplayName(typeof(TEnum), displayName);
     }
 
     /// <summary>
