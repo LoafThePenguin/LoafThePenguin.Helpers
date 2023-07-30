@@ -16,6 +16,15 @@ public sealed class EnumHelperTests
         One = 1
     }
 
+    private enum FooType2
+    {
+        [Display(Name = DISPLAY_NAME_ONE, Description = DISPLAY_DESCRIPTION_ONE)]
+        One = 1,
+
+        [Display(Name = DISPLAY_NAME_ONE, Description = DISPLAY_DESCRIPTION_ONE)]
+        AnotherOne = 2,
+    }
+
     [Fact(Timeout = TIMEOUT)]
     public void GetEnumValueByDisplayDescription_Throws_ANE_TargetType_Is_Null()
     {
@@ -116,8 +125,32 @@ public sealed class EnumHelperTests
     }
 
     [Fact(Timeout = TIMEOUT)]
-    public void Generic_GetEnumValueByDisplayName_Throws_ANE_DisplayDescription_Is_Null()
+    public void Generic_GetEnumValueByDisplayName_Throws_ANE_DisplayName_Is_Null()
     {
         Assert.Throws<ArgumentNullException>(() => EnumHelper.GetEnumValueByDisplayName<FooType>(null));
+    }
+
+    [Fact(Timeout = TIMEOUT)]
+    public void Generic_GetEnumValueByDisplayDescription_Throws_IOE()
+    {
+        Assert.Throws<InvalidOperationException>(() => EnumHelper.GetEnumValueByDisplayDescription<FooType2>(DISPLAY_DESCRIPTION_ONE));
+    }
+
+    [Fact(Timeout = TIMEOUT)]
+    public void GetEnumValueByDisplayDescription_Throws_IOE()
+    {
+        Assert.Throws<InvalidOperationException>(() => EnumHelper.GetEnumValueByDisplayDescription(typeof(FooType2), DISPLAY_DESCRIPTION_ONE));
+    }
+
+    [Fact(Timeout = TIMEOUT)]
+    public void Generic_GetEnumValueByDisplayName_Throws_IOE()
+    {
+        Assert.Throws<InvalidOperationException>(() => EnumHelper.GetEnumValueByDisplayName<FooType2>(DISPLAY_NAME_ONE));
+    }
+
+    [Fact(Timeout = TIMEOUT)]
+    public void GetEnumValueByDisplayName_Throws_IOE()
+    {
+        Assert.Throws<InvalidOperationException>(() => EnumHelper.GetEnumValueByDisplayName(typeof(FooType2), DISPLAY_NAME_ONE));
     }
 }
