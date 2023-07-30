@@ -1,7 +1,35 @@
-﻿namespace LoafThePenguin.Helpers.Tests;
+namespace LoafThePenguin.Helpers.Tests;
 
 public sealed class SetHelperTests
 {
+    private sealed class FooClass
+    {
+        private string? _myProperty1;
+
+        public string? MyProperty1
+        {
+            get => _myProperty1;
+            set
+            {
+                if(SetHelper.Set(ref _myProperty1, value))
+                {
+                    MyProperty1 = value;
+                }
+            }
+        }
+        public string? MyProperty2
+        {
+            get => _myProperty1;
+            set
+            {
+                if(SetHelper.Set(ref _myProperty1, value))
+                {
+                    MyProperty1 = value;
+                }
+            }
+        }
+    }
+
     private const int TIMEOUT = 1000;
 
     [Theory(Timeout = TIMEOUT)]
@@ -142,5 +170,32 @@ public sealed class SetHelperTests
         SetHelper.Set(ref field, value, () => ++callbackVariable);
 
         Assert.Equal(0, callbackVariable);
+    }
+
+    [Fact(Timeout = TIMEOUT)]
+    public void Set_Is_Correct_With_Class_Properties()
+    {
+        string value = "abc";
+        FooClass fooObject = new()
+        {
+            MyProperty1 = "abcde",
+            MyProperty2 = "abc"
+        };
+
+        fooObject.MyProperty1 = value;
+
+        Assert.Equal(fooObject.MyProperty2, value);
+    }
+
+    [Fact(Timeout = TIMEOUT)]
+    public void Set_Is_Correct_With_Class_Properties_In_Ctor()
+    {
+        FooClass fooObject = new()
+        {
+            MyProperty1 = "abcde",
+            MyProperty2 = "abc"
+        };
+
+        Assert.Equal(fooObject.MyProperty2, fooObject.MyProperty1);
     }
 }
