@@ -3,6 +3,7 @@
   <PropertyGroup>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
+    <NoWarn>CS1591;CS8625;</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
