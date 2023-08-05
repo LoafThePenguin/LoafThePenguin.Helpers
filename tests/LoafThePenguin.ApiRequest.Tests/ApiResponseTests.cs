@@ -1,6 +1,6 @@
 using System.Reflection;
 using System.Text;
-using LoafThePenguin.Helpers;
+using LoafThePenguin.Helpers.Extensions;
 using LoafThePenguin.MOEXSharp.ApiRequest.Abstracts;
 using LoafThePenguin.MOEXSharp.ApiRequest.Internal;
 
@@ -260,8 +260,8 @@ public sealed class ApiResponseTests
     {
         await using ApiResponse apiResponse = GetResponse(isSuccess, statusCode, stream);
 
-        byte[] expectedBuffer = await StreamHelper.GetStreamBufferAsync(stream);
-        byte[] actualBuffer = await StreamHelper.GetStreamBufferAsync(apiResponse.ResponseStream);
+        byte[] expectedBuffer = await stream.GetStreamBufferAsync();
+        byte[] actualBuffer = await apiResponse.ResponseStream.GetStreamBufferAsync();
 
 
         Assert.Equal(isSuccess, apiResponse.IsSuccess);
@@ -389,6 +389,38 @@ public sealed class ApiResponseTests
         {
             Assert.Fail($"Было выброшено исключение типа {ex.GetType()}: {ex.Message}");
         }
+    }
+
+    #endregion
+
+    #region Invalid StatusCode value setting throws IOE
+
+    [Fact(
+        Timeout = TIMEOUT,
+        DisplayName = $"Попытка установить при инициализации неверный {nameof(ApiResponse.StatusCode)} " +
+        $"выбрасывает {nameof(InvalidOperationException)}")]
+    public async Task Invalid_StatusCode_Setting_Through_Ctor_Throw_InvalidOperationException()
+    {
+        await Assert.ThrowsAsync<InvalidOperationException>(async () =>
+        {
+            await using ApiResponse apiResponse = new()
+            {
+                IsSuccess = true,
+                ResponseStream = Stream.Null,
+                StatusCode = 1000
+            };
+        });
+    }
+
+    [Fact(
+        Timeout = TIMEOUT,
+        DisplayName = $"Попытка установить после инициализации неверный {nameof(ApiResponse.StatusCode)} " +
+        $"выбрасывает {nameof(InvalidOperationException)}")]
+    public async Task Invalid_StatusCode_Setting_After_Init_Throw_InvalidOperationException()
+    {
+        await using ApiResponse apiResponse = GetDefaultApiResponseObject();
+
+        Assert.Throws<InvalidOperationException>(() => apiResponse.StatusCode = 1000);
     }
 
     #endregion

@@ -1,3 +1,4 @@
+using System.Net;
 using LoafThePenguin.Helpers;
 using LoafThePenguin.MOEXSharp.ApiRequest.Abstracts;
 
@@ -5,6 +6,8 @@ namespace LoafThePenguin.MOEXSharp.ApiRequest.Internal;
 
 internal sealed class ApiResponse : IApiResponse
 {
+    private const string INVALID_STATUS_CODE = "Неверный статус код ответа {0}";
+
     private bool _disposed;
     private int _statusCode;
     private bool _isSuccess;
@@ -32,6 +35,11 @@ internal sealed class ApiResponse : IApiResponse
             if (_disposed)
             {
                 ThrowHelper.ThrowDisposed(this);
+            }
+
+            if(!EnumHelper.HasElement<HttpStatusCode>(value))
+            {
+                ThrowHelper.Throw<InvalidOperationException>(string.Format(INVALID_STATUS_CODE, value));
             }
 
             _statusCode = value;

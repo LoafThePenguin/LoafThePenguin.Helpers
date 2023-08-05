@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\LoafThePenguin.ApiRequest\LoafThePenguin.ApiRequest.csproj" />
+    <ProjectReference Include="..\..\src\LoafThePenguin.Helpers.Extensions\LoafThePenguin.Helpers.Extensions.csproj" />
   </ItemGroup>
 
 </Project>
