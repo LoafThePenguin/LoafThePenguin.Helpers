@@ -1,6 +1,5 @@
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
-using System.Linq;
 using System.Reflection;
 using static LoafThePenguin.Helpers.ThrowHelper;
 
@@ -141,8 +140,9 @@ public static class EnumHelper
     public static bool HasElement<TEnum>(long value)
         where TEnum : struct, Enum
     {
-        return Enum.GetValues<TEnum>()
-            .Any(v => ((IConvertible)v).ToInt64(CultureInfo.InvariantCulture) == value);
+        return Array.Exists(
+            Enum.GetValues<TEnum>(),
+            v => ((IConvertible)v).ToInt64(CultureInfo.InvariantCulture) == value);
     }
 
     private static MemberInfo[] GetMembersInfo(Type targetType)
