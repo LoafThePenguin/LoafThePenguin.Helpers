@@ -5,7 +5,6 @@
     "precision": "revision"
   },
   "publicReleaseRefSpec": [
-    "^refs/heads/preview$",
     "^refs/heads/release",
     "^refs/tags/v\\d+\\.\\d+"
   ],

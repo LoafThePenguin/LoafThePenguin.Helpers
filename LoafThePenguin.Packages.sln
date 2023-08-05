@@ -24,13 +24,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{5E36
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{6DE7ACE1-00C7-4367-822F-4EAC08F2C87C}"
 	ProjectSection(SolutionItems) = preProject
-		.github\workflows\PushPackage.yml = .github\workflows\PushPackage.yml
 		.github\workflows\SonarCloud.yml = .github\workflows\SonarCloud.yml
+		.github\workflows\PushPackage_Helpers.yml = .github\workflows\PushPackage_Helpers.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{70510BC3-E7B4-43F9-AF02-590C099826B7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoafThePenguin.Helpers.Tests", "tests\LoafThePenguin.Helpers.Tests\LoafThePenguin.Helpers.Tests.csproj", "{9C2A785E-C562-4B15-A084-B51CE263CE05}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Helpers", "Helpers", "{9E82A531-FB21-48BC-B43E-FE1601005DF2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Helpers", "Helpers", "{AD4DDF6F-9BAC-4D2B-93BB-87BA41B9F791}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,9 +55,11 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{5C11D257-7376-4957-87F1-18AE47EBB6B5} = {48C24E3D-444C-463C-9A58-BBBE36628354}
+		{5C11D257-7376-4957-87F1-18AE47EBB6B5} = {9E82A531-FB21-48BC-B43E-FE1601005DF2}
 		{6DE7ACE1-00C7-4367-822F-4EAC08F2C87C} = {5E369AF1-BC20-4107-95D5-D5B2875D6751}
-		{9C2A785E-C562-4B15-A084-B51CE263CE05} = {70510BC3-E7B4-43F9-AF02-590C099826B7}
+		{9C2A785E-C562-4B15-A084-B51CE263CE05} = {AD4DDF6F-9BAC-4D2B-93BB-87BA41B9F791}
+		{9E82A531-FB21-48BC-B43E-FE1601005DF2} = {48C24E3D-444C-463C-9A58-BBBE36628354}
+		{AD4DDF6F-9BAC-4D2B-93BB-87BA41B9F791} = {70510BC3-E7B4-43F9-AF02-590C099826B7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9F2B7F69-3C5E-4A4C-8499-1FB9081618B7}
