@@ -269,6 +269,130 @@ public sealed class ApiResponseTests
 
     #endregion
 
+    #region Dispose methods can calls twice (or more)
+
+    [Fact(
+        Timeout = TIMEOUT,
+        DisplayName = $"Вызов {nameof(ApiResponse.Dispose)} может осуществляться дважды")]
+    public void ApiResponse_Dispose_Calls_Twice()
+    {
+        ApiResponse apiResponse = GetDefaultApiResponseObject();
+
+        apiResponse.Dispose();
+
+        try
+        {
+            apiResponse.Dispose();
+        }
+        catch (Exception ex)
+        {
+            Assert.Fail($"Было выброшено исключение типа {ex.GetType()}: {ex.Message}");
+        }
+    }
+
+    [Fact(
+        Timeout = TIMEOUT,
+        DisplayName = $"Вызов {nameof(ApiResponse.Dispose)} может осуществляться сколько угодно")]
+    public void ApiResponse_Dispose_Calls_Many_Times()
+    {
+        ApiResponse apiResponse = GetDefaultApiResponseObject();
+
+        apiResponse.Dispose();
+
+        try
+        {
+            apiResponse.Dispose();
+            apiResponse.Dispose();
+            apiResponse.Dispose();
+            apiResponse.Dispose();
+        }
+        catch (Exception ex)
+        {
+            Assert.Fail($"Было выброшено исключение типа {ex.GetType()}: {ex.Message}");
+        }
+    }
+
+    [Fact(
+        Timeout = TIMEOUT,
+        DisplayName = $"Вызов {nameof(ApiResponse.DisposeAsync)} может осуществляться дважды")]
+    public async Task ApiResponse_DisposeAsync_Calls_Twice()
+    {
+        ApiResponse apiResponse = GetDefaultApiResponseObject();
+
+        await apiResponse.DisposeAsync();
+
+        try
+        {
+            await apiResponse.DisposeAsync();
+        }
+        catch (Exception ex)
+        {
+            Assert.Fail($"Было выброшено исключение типа {ex.GetType()}: {ex.Message}");
+        }
+    }
+
+    [Fact(
+        Timeout = TIMEOUT,
+        DisplayName = $"Вызов {nameof(ApiResponse.DisposeAsync)} может осуществляться сколько угодно")]
+    public async Task ApiResponse_DisposeAsync_Calls_Many_Times()
+    {
+        ApiResponse apiResponse = GetDefaultApiResponseObject();
+
+        await apiResponse.DisposeAsync();
+
+        try
+        {
+            await apiResponse.DisposeAsync();
+            await apiResponse.DisposeAsync();
+            await apiResponse.DisposeAsync();
+            await apiResponse.DisposeAsync();
+        }
+        catch (Exception ex)
+        {
+            Assert.Fail($"Было выброшено исключение типа {ex.GetType()}: {ex.Message}");
+        }
+    }
+
+    [Fact(
+        Timeout = TIMEOUT,
+        DisplayName = $"Вызов {nameof(ApiResponse.DisposeAsync)} может осуществляться после {nameof(ApiResponse.Dispose)}")]
+    public async Task ApiResponse_DisposeAsync_Calls_After_Dispose_Twice()
+    {
+        ApiResponse apiResponse = GetDefaultApiResponseObject();
+
+        apiResponse.Dispose();
+
+        try
+        {
+            await apiResponse.DisposeAsync();
+        }
+        catch (Exception ex)
+        {
+            Assert.Fail($"Было выброшено исключение типа {ex.GetType()}: {ex.Message}");
+        }
+    }
+
+    [Fact(
+        Timeout = TIMEOUT,
+        DisplayName = $"Вызов {nameof(ApiResponse.Dispose)} может осуществляться после {nameof(ApiResponse.DisposeAsync)}")]
+    public async Task ApiResponse_DisposeAsync_Dispose_Calls_Twice()
+    {
+        ApiResponse apiResponse = GetDefaultApiResponseObject();
+
+        await apiResponse.DisposeAsync();
+
+        try
+        {
+            apiResponse.Dispose();
+        }
+        catch (Exception ex)
+        {
+            Assert.Fail($"Было выброшено исключение типа {ex.GetType()}: {ex.Message}");
+        }
+    }
+
+    #endregion
+
     private static ApiResponse GetDefaultApiResponseObject()
     {
         return new ApiResponse
