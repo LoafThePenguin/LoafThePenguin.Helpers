@@ -1,3 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\LoafThePenguin.Helpers.Extensions\LoafThePenguin.Helpers.Extensions.csproj" />
+  </ItemGroup>
 </Project>
