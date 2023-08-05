@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
+using System.Linq;
 using System.Reflection;
 using static LoafThePenguin.Helpers.ThrowHelper;
 
@@ -125,10 +127,33 @@ public static class EnumHelper
             d => d?.Name);
     }
 
+    /// <summary>
+    /// Определяет входит ли значение <paramref name="value"/> во множество значений именованных констант <typeparamref name="TEnum"/>.
+    /// </summary>
+    /// <typeparam name="TEnum">Тип именованных констант.</typeparam>
+    /// <param name="value">Проверяемое значение.</param>
+    /// <returns>
+    /// <see langword="true"/>, 
+    /// если значение <paramref name="value"/> 
+    /// входит во множество значений именованных констант <typeparamref name="TEnum"/>.
+    /// Иначе - <see langword="false"/>.
+    /// </returns>
+    public static bool HasElement<TEnum>(long value)
+        where TEnum : struct, Enum
+    {
+        return Enum.GetValues<TEnum>()
+            .Any(v => ((IConvertible)v).ToInt64(CultureInfo.InvariantCulture) == value);
+    }
+
+    private static MemberInfo[] GetMembersInfo(Type targetType)
+    {
+        return targetType
+            .GetMembers();
+    }
+
     private static Enum? GetEnumValueByDisplayProperty(Type targetType, string displayDescription, Func<DisplayAttribute?, string?> selector)
     {
-        MemberInfo? memberInfo = targetType
-            .GetMembers()
+        MemberInfo? memberInfo = GetMembersInfo(targetType)
             .SingleOrDefault(m => selector(m.GetCustomAttribute<DisplayAttribute>())?.Equals(displayDescription) ?? false);
 
         if (memberInfo is null)

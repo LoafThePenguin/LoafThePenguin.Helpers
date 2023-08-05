@@ -153,4 +153,19 @@ public sealed class EnumHelperTests
     {
         Assert.Throws<InvalidOperationException>(() => EnumHelper.GetEnumValueByDisplayName(typeof(FooType2), DISPLAY_NAME_ONE));
     }
+
+    [Theory(
+        Timeout = TIMEOUT,
+        DisplayName = $"{nameof(EnumHelper.HasElement)} корректно определяет, входит ли числовое значение во множество значений {nameof(Enum)}")]
+    [InlineData(FooType.One, 1, true)]
+    [InlineData(FooType.One, 0, false)]
+    [InlineData(FooType.One, 100, false)]
+    [InlineData(FooType2.One, 2, true)]
+    [InlineData(FooType2.One, 1, true)]
+    [InlineData(FooType2.One, 100, false)]
+    public void HasElement_Works_Correct<TEnum>(TEnum _, long value, bool expected)
+        where TEnum : struct, Enum
+    {
+        Assert.Equal(expected, EnumHelper.HasElement<TEnum>(value));
+    }
 }
