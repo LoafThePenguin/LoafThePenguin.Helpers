@@ -22,22 +22,16 @@ internal sealed class ApiResponse : IApiResponse
     {
         get
         {
-            if (_disposed)
-            {
-                ThrowHelper.ThrowDisposed(this);
-            }
+            CheckDisposed();
 
             return _statusCode;
         }
 
         set
         {
-            if (_disposed)
-            {
-                ThrowHelper.ThrowDisposed(this);
-            }
+            CheckDisposed();
 
-            if(!EnumHelper.HasElement<HttpStatusCode>(value))
+            if (!EnumHelper.HasElement<HttpStatusCode>(value))
             {
                 ThrowHelper.Throw<InvalidOperationException>(string.Format(INVALID_STATUS_CODE, value));
             }
@@ -49,20 +43,14 @@ internal sealed class ApiResponse : IApiResponse
     {
         get
         {
-            if (_disposed)
-            {
-                ThrowHelper.ThrowDisposed(this);
-            }
+            CheckDisposed();
 
             return _isSuccess;
         }
 
         set
         {
-            if (_disposed)
-            {
-                ThrowHelper.ThrowDisposed(this);
-            }
+            CheckDisposed();
 
             _isSuccess = value;
         }
@@ -71,20 +59,14 @@ internal sealed class ApiResponse : IApiResponse
     {
         get
         {
-            if (_disposed)
-            {
-                ThrowHelper.ThrowDisposed(this);
-            }
+            CheckDisposed();
 
             return _responseStream;
         }
 
         set
         {
-            if (_disposed)
-            {
-                ThrowHelper.ThrowDisposed(this);
-            }
+            CheckDisposed();
 
             _ = ThrowHelper.ThrowIfArgumentNull(value);
 
@@ -112,5 +94,13 @@ internal sealed class ApiResponse : IApiResponse
 
         await _responseStream.DisposeAsync();
         _disposed = true;
+    }
+
+    private void CheckDisposed()
+    {
+        if (_disposed)
+        {
+            ThrowHelper.ThrowDisposed(this);
+        }
     }
 }
