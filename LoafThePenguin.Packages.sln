@@ -26,6 +26,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\PushPackage_ApiRequest.yml = .github\workflows\PushPackage_ApiRequest.yml
 		.github\workflows\PushPackage_Helpers.yml = .github\workflows\PushPackage_Helpers.yml
+		.github\workflows\PushPackage_Helpers_Extensions.yml = .github\workflows\PushPackage_Helpers_Extensions.yml
 		.github\workflows\SonarCloud.yml = .github\workflows\SonarCloud.yml
 	EndProjectSection
 EndProject
@@ -43,7 +44,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoafThePenguin.ApiRequest",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiRequest", "ApiRequest", "{5068C36D-0EF5-49C8-ADA0-4100E68677AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoafThePenguin.ApiRequest.Tests", "tests\LoafThePenguin.ApiRequest.Tests\LoafThePenguin.ApiRequest.Tests.csproj", "{92948540-C3DA-40FB-B421-FA41585DF739}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoafThePenguin.ApiRequest.Tests", "tests\LoafThePenguin.ApiRequest.Tests\LoafThePenguin.ApiRequest.Tests.csproj", "{92948540-C3DA-40FB-B421-FA41585DF739}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "items", "items", "{5DD69578-6C74-4E54-966D-4E66EE1EAE91}"
 	ProjectSection(SolutionItems) = preProject
@@ -54,6 +55,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "items", "items", "{57305DCA
 	ProjectSection(SolutionItems) = preProject
 		src\Directory.Build.props = src\Directory.Build.props
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoafThePenguin.Helpers.Extensions", "src\LoafThePenguin.Helpers.Extensions\LoafThePenguin.Helpers.Extensions.csproj", "{C9ED2614-FEBE-4F51-8DA6-2BE1DD6F42DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoafThePenguin.Helpers.Extensions.Tests", "tests\LoafThePenguin.Helpers.Extensions.Tests\LoafThePenguin.Helpers.Extensions.Tests.csproj", "{F45CA9DF-9869-4FC0-96AF-EA562BF2BE19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +82,14 @@ Global
 		{92948540-C3DA-40FB-B421-FA41585DF739}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92948540-C3DA-40FB-B421-FA41585DF739}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92948540-C3DA-40FB-B421-FA41585DF739}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9ED2614-FEBE-4F51-8DA6-2BE1DD6F42DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9ED2614-FEBE-4F51-8DA6-2BE1DD6F42DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9ED2614-FEBE-4F51-8DA6-2BE1DD6F42DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9ED2614-FEBE-4F51-8DA6-2BE1DD6F42DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F45CA9DF-9869-4FC0-96AF-EA562BF2BE19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F45CA9DF-9869-4FC0-96AF-EA562BF2BE19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F45CA9DF-9869-4FC0-96AF-EA562BF2BE19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F45CA9DF-9869-4FC0-96AF-EA562BF2BE19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,6 +106,8 @@ Global
 		{92948540-C3DA-40FB-B421-FA41585DF739} = {5068C36D-0EF5-49C8-ADA0-4100E68677AE}
 		{5DD69578-6C74-4E54-966D-4E66EE1EAE91} = {70510BC3-E7B4-43F9-AF02-590C099826B7}
 		{57305DCA-15A9-4BA0-A547-D4D56E5D839B} = {48C24E3D-444C-463C-9A58-BBBE36628354}
+		{C9ED2614-FEBE-4F51-8DA6-2BE1DD6F42DE} = {9E82A531-FB21-48BC-B43E-FE1601005DF2}
+		{F45CA9DF-9869-4FC0-96AF-EA562BF2BE19} = {AD4DDF6F-9BAC-4D2B-93BB-87BA41B9F791}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9F2B7F69-3C5E-4A4C-8499-1FB9081618B7}

@@ -1,0 +1,97 @@
+name: PushPackage_Helpers_Extensions
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - release
+    paths:
+      - 'src/LoafThePenguin.Helpers.Extensions/**'
+jobs:
+  sonar:
+    name: Build and analyze
+    runs-on: windows-latest
+    steps:
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: 'zulu' # Alternative distribution options are available.
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v3
+        with:
+          path: ~\sonar\cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Cache SonarCloud scanner
+        id: cache-sonar-scanner
+        uses: actions/cache@v3
+        with:
+          path: .\.sonar\scanner
+          key: ${{ runner.os }}-sonar-scanner
+          restore-keys: ${{ runner.os }}-sonar-scanner
+      - name: Install SonarCloud scanner
+        if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
+        shell: powershell
+        run: |
+          New-Item -Path .\.sonar\scanner -ItemType Directory
+          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
+      - name: Setup Coverage Tool
+        run: dotnet tool install --global dotnet-coverage
+      - name: Build and analyze
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        shell: powershell
+        run: |
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"LoafThePenguin_LoafThePenguin.Packages" /o:"loafthepenguin" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+          dotnet build src/LoafThePenguin.Helpers.Extensions/LoafThePenguin.Helpers.Extensions.csproj --no-incremental
+          dotnet-coverage collect "dotnet test" -f xml -o "coverage.xml"
+          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+          
+  release:
+    name: Push LoafThePenguin.Helpers.Extensions Package
+    needs: [sonar]
+    runs-on: windows-latest
+    permissions: 
+        packages: write
+    steps:
+      - name: Setup .NET 7
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 7.*.* 
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Pack Package
+        run: dotnet pack "src/LoafThePenguin.Helpers.Extensions/LoafThePenguin.Helpers.Extensions.csproj" -o "artifacts/Release/nupkg/LoafThePenguin.Helpers.Extensions/" -c Release
+      - name: Push Package
+        run: dotnet nuget push "**/artifacts/Release/nupkg/LoafThePenguin.Helpers.Extensions/*.nupkg" --api-key ${{ secrets.GITHUB_TOKEN }} -s "LoafThePenguin" --skip-duplicate --no-symbols
+   
+  tag: 
+    name: Create Tag
+    needs: [release]
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Version
+        uses: dotnet/nbgv@master
+        id: nbgv
+        with:
+          setAllVars: true
+          setCommonVars: true
+          path: "**/src/LoafThePenguin.Helpers.Extensions/"
+      - run: echo "previous_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo '')" >> $GITHUB_ENV
+      - run: "echo 'New tag: ${{ steps.nbgv.outputs.SemVer2 }}'"
+      - name: Create Tag
+        id: create_tag
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: (env.previous_tag || env.previous_tag=='')
+        run: | 
+            git tag helpers.extensions-v.${{ steps.nbgv.outputs.SemVer2 }}
+            git push origin --tags
