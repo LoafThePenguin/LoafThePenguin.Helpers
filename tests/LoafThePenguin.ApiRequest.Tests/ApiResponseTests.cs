@@ -1,4 +1,6 @@
 using System.Reflection;
+using System.Text;
+using LoafThePenguin.Helpers;
 using LoafThePenguin.MOEXSharp.ApiRequest.Abstracts;
 using LoafThePenguin.MOEXSharp.ApiRequest.Internal;
 
@@ -174,13 +176,16 @@ public sealed class ApiResponseTests
         Timeout = TIMEOUT,
         DisplayName = $"Если в {nameof(ApiResponse.ResponseStream)} попытаться записать null при инициализации объекта, " +
                       $"то должен произойти выброс {nameof(ArgumentNullException)}")]
-    public void ApiResponse_Set_Null_For_ResponseStream_With_Init_Properties_Through_Ctor_Throws_ArgumentNullException()
+    public async Task ApiResponse_Set_Null_For_ResponseStream_With_Init_Properties_Through_Ctor_Throws_ArgumentNullException()
     {
-        Assert.Throws<ArgumentNullException>(() => _ = new ApiResponse
+        await Assert.ThrowsAsync<ArgumentNullException>(async () =>
         {
-            IsSuccess = false,
-            ResponseStream = null,
-            StatusCode = 200
+            await using ApiResponse _ = new()
+            {
+                IsSuccess = false,
+                ResponseStream = null,
+                StatusCode = 200
+            };
         });
     }
 
@@ -188,9 +193,9 @@ public sealed class ApiResponseTests
         Timeout = TIMEOUT,
         DisplayName = $"Если в {nameof(ApiResponse.ResponseStream)} попытаться записать null после инициализации объекта, " +
                       $"то должен произойти выброс {nameof(ArgumentNullException)}")]
-    public void ApiResponse_Set_Null_For_ResponseStream_After_Ctor_Throws_ArgumentNullException()
+    public async Task ApiResponse_Set_Null_For_ResponseStream_After_Ctor_Throws_ArgumentNullException()
     {
-        ApiResponse response = GetDefaultApiResponseObject();
+        await using ApiResponse response = GetDefaultApiResponseObject();
 
         Assert.Throws<ArgumentNullException>(() => response.ResponseStream = null);
     }
@@ -199,9 +204,9 @@ public sealed class ApiResponseTests
         Timeout = TIMEOUT,
         DisplayName = $"Если в {nameof(ApiResponse.ResponseStream)} попытаться записать null через интерфейс с помощью рефлексии, " +
                       $"то должен произойти выброс {nameof(TargetInvocationException)}, с внутренним исключением {nameof(ArgumentNullException)}")]
-    public void ApiResponse_Set_Null_For_ResponseStream_Through_Interface_With_Reflection_Throws_TargetInvocationException_With_Inner_ArgumentNullException()
+    public async Task ApiResponse_Set_Null_For_ResponseStream_Through_Interface_With_Reflection_Throws_TargetInvocationException_With_Inner_ArgumentNullException()
     {
-        IApiResponse response = GetDefaultApiResponseObject();
+        await using IApiResponse response = GetDefaultApiResponseObject();
         PropertyInfo property = response
             .GetType()
             .GetProperty(nameof(IApiResponse.ResponseStream));
@@ -223,6 +228,47 @@ public sealed class ApiResponseTests
 
     #endregion
 
+    #region Get valid values of ApiResponse
+
+    [Theory(
+        Timeout = TIMEOUT,
+        DisplayName = $"Получение ожидаемого значения {nameof(ApiResponse.StatusCode)}")]
+    [MemberData(nameof(GetValidValuesForApiResponse))]
+    public async Task ApiResponse_Gets_StatusCode_Value(bool isSuccess, int statusCode, Stream stream)
+    {
+        await using ApiResponse apiResponse = GetResponse(isSuccess, statusCode, stream);
+
+        Assert.Equal(statusCode, apiResponse.StatusCode);
+    }
+
+    [Theory(
+        Timeout = TIMEOUT,
+        DisplayName = $"Получение ожидаемого значения {nameof(ApiResponse.IsSuccess)}")]
+    [MemberData(nameof(GetValidValuesForApiResponse))]
+    public async Task ApiResponse_Gets_IsSuccess_Value(bool isSuccess, int statusCode, Stream stream)
+    {
+        await using ApiResponse apiResponse = GetResponse(isSuccess, statusCode, stream);
+
+        Assert.Equal(isSuccess, apiResponse.IsSuccess);
+    }
+
+    [Theory(
+        Timeout = TIMEOUT,
+        DisplayName = $"Получение ожидаемого значения {nameof(ApiResponse.ResponseStream)}")]
+    [MemberData(nameof(GetValidValuesForApiResponse))]
+    public async Task ApiResponse_Gets_ResponseStream_Value(bool isSuccess, int statusCode, Stream stream)
+    {
+        await using ApiResponse apiResponse = GetResponse(isSuccess, statusCode, stream);
+
+        byte[] expectedBuffer = await StreamHelper.GetStreamBufferAsync(stream);
+        byte[] actualBuffer = await StreamHelper.GetStreamBufferAsync(apiResponse.ResponseStream);
+
+
+        Assert.Equal(isSuccess, apiResponse.IsSuccess);
+    }
+
+    #endregion
+
     private static ApiResponse GetDefaultApiResponseObject()
     {
         return new ApiResponse
@@ -230,6 +276,44 @@ public sealed class ApiResponseTests
             IsSuccess = true,
             StatusCode = 200,
             ResponseStream = Stream.Null
+        };
+    }
+
+    private static Stream GetStream(string strContent)
+    {
+        byte[] buffer = Encoding.UTF8.GetBytes(strContent);
+
+        return new MemoryStream(buffer);
+    }
+
+    private static ApiResponse GetResponse(bool isSuccess, int statusCode, Stream stream)
+    {
+        MemoryStream responseStream = new();
+        stream.CopyTo(responseStream);
+
+        return new ApiResponse
+        {
+            IsSuccess = isSuccess,
+            StatusCode = statusCode,
+            ResponseStream = responseStream
+        };
+    }
+
+    public static IEnumerable<object[]> GetValidValuesForApiResponse()
+    {
+        byte[] case1Buffer = Encoding.UTF8.GetBytes("Hello");
+        yield return new object[]
+        {
+            true,
+            200,
+            new MemoryStream(case1Buffer)
+        };
+
+        yield return new object[]
+        {
+            false,
+            500,
+            Stream.Null
         };
     }
 }
