@@ -15,6 +15,7 @@
     ":!/README.md",
     ":!/LICENSE",
     ":!/Directory.Build.props",
+    ":!/**/Directory.Build.props",
     ":!/.gitignore",
     ":!/.editorconfig",
     ":!/.github/",
