@@ -41,6 +41,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiRequest", "ApiRequest", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoafThePenguin.ApiRequest", "src\LoafThePenguin.ApiRequest\LoafThePenguin.ApiRequest.csproj", "{031D99AB-873A-42D0-ACCD-B7FA5E038438}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiRequest", "ApiRequest", "{5068C36D-0EF5-49C8-ADA0-4100E68677AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoafThePenguin.ApiRequest.Tests", "tests\LoafThePenguin.ApiRequest.Tests\LoafThePenguin.ApiRequest.Tests.csproj", "{92948540-C3DA-40FB-B421-FA41585DF739}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +63,10 @@ Global
 		{031D99AB-873A-42D0-ACCD-B7FA5E038438}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{031D99AB-873A-42D0-ACCD-B7FA5E038438}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{031D99AB-873A-42D0-ACCD-B7FA5E038438}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92948540-C3DA-40FB-B421-FA41585DF739}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92948540-C3DA-40FB-B421-FA41585DF739}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92948540-C3DA-40FB-B421-FA41585DF739}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92948540-C3DA-40FB-B421-FA41585DF739}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,6 +79,8 @@ Global
 		{AD4DDF6F-9BAC-4D2B-93BB-87BA41B9F791} = {70510BC3-E7B4-43F9-AF02-590C099826B7}
 		{8448B33C-541C-4BBC-80FA-D59BFFF734B0} = {48C24E3D-444C-463C-9A58-BBBE36628354}
 		{031D99AB-873A-42D0-ACCD-B7FA5E038438} = {8448B33C-541C-4BBC-80FA-D59BFFF734B0}
+		{5068C36D-0EF5-49C8-ADA0-4100E68677AE} = {70510BC3-E7B4-43F9-AF02-590C099826B7}
+		{92948540-C3DA-40FB-B421-FA41585DF739} = {5068C36D-0EF5-49C8-ADA0-4100E68677AE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9F2B7F69-3C5E-4A4C-8499-1FB9081618B7}
