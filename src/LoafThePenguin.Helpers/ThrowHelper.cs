@@ -32,10 +32,10 @@ public static class ThrowHelper
     /// Массив аргументов выбрасываемого исключения.
     /// </param>
     /// <exception cref="InvalidOperationException">
-    /// Возникает, когда массив <paramref name="args"/> пуст. Либо когда исключение неопределено.
+    /// Возникает, когда массив <paramref name="args"/> пуст. Либо когда исключение неопределенно.
     /// </exception>
     /// <remarks>
-    /// Массив <paramref name="args"/> должен содержать хотябы один аргмент - сообщение.
+    /// Массив <paramref name="args"/> должен содержать хотя бы один аргумент - сообщение.
     /// </remarks>
     public static void Throw<T>(params object?[] args)
         where T : Exception
@@ -61,7 +61,7 @@ public static class ThrowHelper
     }
 
     /// <summary>
-    /// Выбрасывет исключение <see cref="ObjectDisposedException"/>.
+    /// Выбрасывает исключение <see cref="ObjectDisposedException"/>.
     /// </summary>
     /// <typeparam name="TDisposed">Тип высвобожденного объекта.</typeparam>
     /// <param name="value">Высвобожденный объект.</param>
@@ -141,7 +141,7 @@ public static class ThrowHelper
     /// Минимум, который может принимать <paramref name="value"/>.
     /// </param>
     /// <param name="permissibleMaximum">
-    /// Макимум, который может принимать <paramref name="value"/>.
+    /// Максимум, который может принимать <paramref name="value"/>.
     /// </param>
     /// <param name="argumentName">Имя аргумента.</param>
     /// <exception cref="InvalidOperationException">
@@ -249,7 +249,7 @@ public static class ThrowHelper
     /// <param name="sequence">Последовательность.</param>
     /// <param name="argumentName">Имя аргумента последовательности.</param>
     /// <returns>
-    /// <see langword="false"/> если в последовательности нет элекментов, которые <see langword="null"/>,
+    /// <see langword="false"/> если в последовательности нет элементов, которые <see langword="null"/>,
     /// иначе выбрасывает исключение <see cref="NullReferenceException"/>.
     /// </returns>
     /// <exception cref="NullReferenceException">
