@@ -84,6 +84,7 @@ jobs:
         with:
           setAllVars: true
           setCommonVars: true
+          path: "**/src/LoafThePenguin.Helpers/"
       - run: echo "previous_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo '')" >> $GITHUB_ENV
       - run: "echo 'New tag: ${{ steps.nbgv.outputs.SemVer2 }}'"
       - name: Create Tag
