@@ -45,6 +45,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiRequest", "ApiRequest", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoafThePenguin.ApiRequest.Tests", "tests\LoafThePenguin.ApiRequest.Tests\LoafThePenguin.ApiRequest.Tests.csproj", "{92948540-C3DA-40FB-B421-FA41585DF739}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "items", "items", "{5DD69578-6C74-4E54-966D-4E66EE1EAE91}"
+	ProjectSection(SolutionItems) = preProject
+		tests\Directory.Build.props = tests\Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "items", "items", "{57305DCA-15A9-4BA0-A547-D4D56E5D839B}"
+	ProjectSection(SolutionItems) = preProject
+		src\Directory.Build.props = src\Directory.Build.props
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +91,8 @@ Global
 		{031D99AB-873A-42D0-ACCD-B7FA5E038438} = {8448B33C-541C-4BBC-80FA-D59BFFF734B0}
 		{5068C36D-0EF5-49C8-ADA0-4100E68677AE} = {70510BC3-E7B4-43F9-AF02-590C099826B7}
 		{92948540-C3DA-40FB-B421-FA41585DF739} = {5068C36D-0EF5-49C8-ADA0-4100E68677AE}
+		{5DD69578-6C74-4E54-966D-4E66EE1EAE91} = {70510BC3-E7B4-43F9-AF02-590C099826B7}
+		{57305DCA-15A9-4BA0-A547-D4D56E5D839B} = {48C24E3D-444C-463C-9A58-BBBE36628354}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9F2B7F69-3C5E-4A4C-8499-1FB9081618B7}
