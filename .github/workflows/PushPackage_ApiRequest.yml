@@ -93,5 +93,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: (env.previous_tag || env.previous_tag=='')
         run: | 
-            git tag api_request-v.${{ steps.nbgv.outputs.SemVer2 }}
+            git tag apirequest-v.${{ steps.nbgv.outputs.SemVer2 }}
             git push origin --tags
