@@ -24,6 +24,9 @@ public interface IApiRequestMessage : IDisposable
     /// <summary>
     /// Асинхронно отправляет запрос к Api.
     /// </summary>
+    /// <param name="cancellationToken">
+    /// Токен отмены.
+    /// </param>
     /// <returns>Экземпляр ответа на запрос от Api.</returns>
-    Task<IApiResponse> SendAsync();
+    Task<IApiResponse> SendAsync(CancellationToken cancellationToken = default);
 }
