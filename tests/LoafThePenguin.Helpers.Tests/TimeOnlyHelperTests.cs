@@ -1,5 +1,3 @@
-using System.IO;
-
 namespace LoafThePenguin.Helpers.Tests;
 
 public sealed class TimeOnlyHelperTests
