@@ -1,8 +1,8 @@
 using System.Net;
+using LoafThePenguin.ApiRequest.Abstracts;
 using LoafThePenguin.Helpers;
-using LoafThePenguin.MOEXSharp.ApiRequest.Abstracts;
 
-namespace LoafThePenguin.MOEXSharp.ApiRequest.Internal;
+namespace LoafThePenguin.ApiRequest.Internal;
 
 internal sealed class ApiResponse : IApiResponse
 {

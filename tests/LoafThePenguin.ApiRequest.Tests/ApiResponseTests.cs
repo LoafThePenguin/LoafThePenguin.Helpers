@@ -1,8 +1,8 @@
 using System.Reflection;
 using System.Text;
+using LoafThePenguin.ApiRequest.Abstracts;
+using LoafThePenguin.ApiRequest.Internal;
 using LoafThePenguin.Helpers.Extensions;
-using LoafThePenguin.MOEXSharp.ApiRequest.Abstracts;
-using LoafThePenguin.MOEXSharp.ApiRequest.Internal;
 
 namespace LoafThePenguin.ApiRequest.Tests;
 
