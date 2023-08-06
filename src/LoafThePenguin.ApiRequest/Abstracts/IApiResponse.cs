@@ -1,9 +1,9 @@
-namespace LoafThePenguin.MOEXSharp.ApiRequest.Abstracts;
+namespace LoafThePenguin.ApiRequest.Abstracts;
 
 /// <summary>
 /// Представляет тип ответа от Api.
 /// </summary>
-public interface IApiResponse: IDisposable, IAsyncDisposable
+public interface IApiResponse : IDisposable, IAsyncDisposable
 {
     /// <summary>
     /// Возвращает статус-код ответа.

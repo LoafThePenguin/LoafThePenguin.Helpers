@@ -1,4 +1,4 @@
-namespace LoafThePenguin.MOEXSharp.ApiRequest.Abstracts;
+namespace LoafThePenguin.ApiRequest.Abstracts;
 
 /// <summary>
 /// Представляет тип запроса к Api.
