@@ -1,4 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Description>
+      Содержит вспомогательные методы расширения, упрощающие разработку.
+    </Description>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\LoafThePenguin.Helpers\LoafThePenguin.Helpers.csproj" />
   </ItemGroup>
