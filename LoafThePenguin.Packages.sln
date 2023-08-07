@@ -56,9 +56,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "items", "items", "{57305DCA
 		src\Directory.Build.props = src\Directory.Build.props
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoafThePenguin.Helpers.Extensions", "src\LoafThePenguin.Helpers.Extensions\LoafThePenguin.Helpers.Extensions.csproj", "{C9ED2614-FEBE-4F51-8DA6-2BE1DD6F42DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoafThePenguin.Helpers.Extensions", "src\LoafThePenguin.Helpers.Extensions\LoafThePenguin.Helpers.Extensions.csproj", "{C9ED2614-FEBE-4F51-8DA6-2BE1DD6F42DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoafThePenguin.Helpers.Extensions.Tests", "tests\LoafThePenguin.Helpers.Extensions.Tests\LoafThePenguin.Helpers.Extensions.Tests.csproj", "{F45CA9DF-9869-4FC0-96AF-EA562BF2BE19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoafThePenguin.Helpers.Extensions.Tests", "tests\LoafThePenguin.Helpers.Extensions.Tests\LoafThePenguin.Helpers.Extensions.Tests.csproj", "{F45CA9DF-9869-4FC0-96AF-EA562BF2BE19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
