@@ -1,4 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Description>
+      Упрощает работу с отправкой запросов к Api, а так же получение ответа и его чтение.
+    </Description>
+  </PropertyGroup>
+  
   <ItemGroup>
     <ProjectReference Include="..\LoafThePenguin.Helpers\LoafThePenguin.Helpers.csproj" />
   </ItemGroup>
