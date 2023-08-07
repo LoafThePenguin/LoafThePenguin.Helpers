@@ -1,11 +1,10 @@
-using System;
 using System.Net.Http.Headers;
 using LoafThePenguin.ApiRequest.Abstracts;
 using LoafThePenguin.Helpers;
 
 namespace LoafThePenguin.ApiRequest.Internal;
 
-internal sealed class ApiRequestMessage : IDisposable, IApiRequestMessage
+internal sealed class ApiRequestMessage : IApiRequestMessage
 {
     private const string IOE_STRING_EMPTY_MESSAGE = "Параметр \"{0}\" не может быть пустой строкой";
 
@@ -68,7 +67,7 @@ internal sealed class ApiRequestMessage : IDisposable, IApiRequestMessage
         }
 
         string[] valuesArray = values as string[] ?? values.ToArray();
-        _ = ThrowHelper.ThrowIfAnyItemIsNull(valuesArray, argumentName: nameof(values));
+        _ = ThrowHelper.ThrowIfAnyItemIsNull(valuesArray);
         
         Headers.Add(name, valuesArray);
 
