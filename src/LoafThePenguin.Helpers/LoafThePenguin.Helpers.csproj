@@ -1,3 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
+  <PropertyGroup>
+    <Description>
+      Содержит вспомогательные методы, упрощающие разработку.
+    </Description>
+  </PropertyGroup>
 </Project>
